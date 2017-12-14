@@ -2,3 +2,8 @@
 body {
   background-color: white;
 }
+
+/* line 6, ../sass/_contact.scss */
+form input {
+  display: block;
+}

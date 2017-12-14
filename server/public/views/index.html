@@ -8,9 +8,9 @@
 
     <!-- styles -->
     <link href="../styles/stylesheets/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/stylesheets/screen.css">
 
     <!-- angularJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js.map"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
 
     <!-- local -->
@@ -23,7 +23,29 @@
 </head>
 
 <body ng-app="myApp">
-<h1>hello</h1>
+    <section ng-controller="ContactController as cc">
+        <h1>hello</h1>
+        <form action="">
+            <input type="radio" name="filter" id="district">District
+            <input type="radio" name="filter" id="senator">Senator
+        </form>
+
+        <form action="">
+            <input type="text" name="user" id="name" placeholder="name">
+            <input type="tel" name="user" id="phone" placeholder="phonenumber">
+            <input type="text" name="user" id="address" placeholder="address">
+            <input type="email" name="user" id="email" placeholder="e-mail">
+            <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments"></textarea>
+            <button type="submit">Submit</button>
+            <!-- 
+                capcha here
+
+             -->
+             <input type="checkbox" name="captcha" id="captcha">
+             <label for="captcha">Are you human?</label>
+        </form>
+    </section>
+
 </body>
 
 </html>
