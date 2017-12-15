@@ -10,6 +10,10 @@ body {
         display: inline;
         margin: 15px 0;
     }
+    select {
+        display: block;
+        margin-bottom: 15px;
+    }
 }
 
 .contactinfo {
@@ -26,5 +30,8 @@ body {
     }
     .recaptchaMsg {
         min-height: 30px;
+    }
+    #subject {
+        margin-top:25px;
     }
 }

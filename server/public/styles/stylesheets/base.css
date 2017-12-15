@@ -13,25 +13,34 @@ body {
   display: inline;
   margin: 15px 0;
 }
+/* line 13, ../sass/_contact.scss */
+.initial select {
+  display: block;
+  margin-bottom: 15px;
+}
 
-/* line 15, ../sass/_contact.scss */
+/* line 19, ../sass/_contact.scss */
 .contactinfo {
   margin: 15px 0;
 }
-/* line 17, ../sass/_contact.scss */
+/* line 21, ../sass/_contact.scss */
 .contactinfo input, .contactinfo textarea {
   margin: 5px 0;
   display: block;
 }
-/* line 21, ../sass/_contact.scss */
+/* line 25, ../sass/_contact.scss */
 .contactinfo input[type="checkbox"] {
   display: inline;
 }
-/* line 24, ../sass/_contact.scss */
+/* line 28, ../sass/_contact.scss */
 .contactinfo button {
   display: block;
 }
-/* line 27, ../sass/_contact.scss */
+/* line 31, ../sass/_contact.scss */
 .contactinfo .recaptchaMsg {
   min-height: 30px;
+}
+/* line 34, ../sass/_contact.scss */
+.contactinfo #subject {
+  margin-top: 25px;
 }

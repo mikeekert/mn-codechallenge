@@ -13,6 +13,7 @@ myApp
                     userObject.capchaMessage = 'Complete the captcha before sending';
                 } else {
                     const post_data = { //prepare payload
+                        'to': user.recipient,
                         'fName': user.fName,
                         'lName': user.lName,
                         'phone': user.phone,
@@ -27,6 +28,14 @@ myApp
                         userObject.capchaMessage = response.data.responseDesc; // return captcha json message
                     });
                 }
+            },
+            retrieve: () => {
+                $http.get('/contact') // get district/sen list
+                    .then((response) => {
+                        console.log('resp: ', response);
+                        userObject.array = response;
+                    });
+
             }
         };
     });

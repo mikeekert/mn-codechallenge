@@ -25,11 +25,13 @@
 </head>
 
 <body ng-app="myApp">
-    <section ng-controller="ContactController as cont">
+    <section ng-controller="ContactController as cont" ng-init="cont.service.retrieve()">
         <h1>hello</h1>
         <form action="" class="initial">
             <input type="radio" name="filter" id="district"> <label for="district">District</label> 
             <input type="radio" name="filter" id="senator" ng-click="cont.formsend()"> <label for="senator">Senator</label>
+            <select name="districts" id="districtList" ng-options="i.districtID for i in cont.userObject.districts" ng-model="cont.districts">
+            </select>
         </form>
 
         <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)">
@@ -38,7 +40,11 @@
             <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
             <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address">
             <input type="text" name="user" id="address2" placeholder="address2" ng-model="cont.user.address2">
+            <input type="text" name="user" id="city" placeholder="city" ng-model="cont.user.city">
+            <input type="text" name="user" id="state" placeholder="state" ng-model="cont.user.state">
+            <input type="text" name="user" id="zip" placeholder="zip" ng-model="cont.user.zip">
             <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
+            <input type="text" name="user" id="subject" placeholder="subject" ng-model="cont.user.subject">
             <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments" required></textarea>
             <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capchaMessage"></div>
             <div class="recaptchaMsg">
