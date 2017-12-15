@@ -40,16 +40,12 @@
             <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address">
             <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email">
             <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments"></textarea>
-            <!-- 
-                capcha here
 
-             -->
-                <!-- <div class="g-recaptcha" vc-recaptcha key="6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd"></div> -->
-                <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'"></div>
-                <!-- TEST KEY FOR HEROKU -->
-                <br/>
-                <button type="submit">Submit</button>
-            </form>
+            <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'"></div>
+            <!-- TEST KEY FOR HEROKU -->
+            <br/>
+            <button type="submit">Submit</button>
+        </form>
     </section>
 
 </body>
