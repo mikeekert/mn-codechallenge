@@ -9,6 +9,7 @@ router.post('/', (req, res) => {
     const email = req.body.email;
     const recapcha = req.body.g-recaptcha-response;
     const secret = process.env.V2PASS;
+    console.log(req.body);
 
     // checking capcha being empty
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
@@ -25,7 +26,7 @@ router.post('/', (req, res) => {
             // capcha verification failed
           return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
         }
-        
+
         // perform nodemailer after verification passed
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
