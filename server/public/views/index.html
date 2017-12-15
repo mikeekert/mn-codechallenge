@@ -19,7 +19,8 @@
     <script src="../scripts/services/contact.service.js"></script>
 
     <!-- google captcha -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
+    <script src="../scripts/vendors/angular-recaptcha.min.js"></script>
 
 
 </head>
@@ -44,11 +45,13 @@
 
              -->
             <form action="" method="POST">
-                    <div class="g-recaptcha" data-sitekey="6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd"></div>
-                    <!-- TEST KEY FOR HEROKU -->
-                    <br/>
-                  </form>
-                  <button type="submit">Submit</button>
+                <!-- <div class="g-recaptcha" vc-recaptcha key="6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd"></div> -->
+                <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'"></div>
+
+                <!-- TEST KEY FOR HEROKU -->
+                <br/>
+            </form>
+            <button type="submit">Submit</button>
 
 
         </form>
