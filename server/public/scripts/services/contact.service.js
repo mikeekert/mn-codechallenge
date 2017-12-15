@@ -4,13 +4,13 @@ myApp
         var userObject = [{}];
 
         return {
-            userObject: userObject, 
+            userObject: userObject,
 
             formsend: (user) => { // send user data to server
                 userObject.capchaMessage = ''; // clear capcha message on send
 
-                if (!grecaptcha.getResponse().length) {
-                    alert('complete the captcha');
+                if (!grecaptcha.getResponse().length) { // quick client side check to alert user to use the captcha
+                    userObject.capchaMessage = 'Complete the captcha before sending';
                 } else {
                     const post_data = { //prepare payload
                         'fName': user.fName,
@@ -19,14 +19,13 @@ myApp
                         'address': user.address,
                         'email': user.email,
                         'comments': user.comments,
-                        'g-recaptcha-response': vcRecaptchaService.getResponse() // grab token from form
+                        'g-recaptcha-response': vcRecaptchaService.getResponse() // grab captcha token from form
                     };
-    
-                    $http 
-                        .post('/contact/', post_data) // post to server API
+
+                    $http.post('/contact/', post_data) // post info with captcha token to server API for server-side verify
                         .then((response) => {
-                            userObject.capchaMessage = response.data.responseDesc; // return captcha json message
-                        });
+                        userObject.capchaMessage = response.data.responseDesc; // return captcha json message
+                    });
                 }
             }
         };
