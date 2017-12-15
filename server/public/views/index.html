@@ -41,7 +41,7 @@
             <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email">
             <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments"></textarea>
             <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'"></div>
-            <span ng-if="!cont.userObject.capchaMessage"> {{cont.userObject.capchaMessage}} </span>
+            <span ng-if="cont.userObject.capchaMessage"> {{cont.userObject.capchaMessage}} </span>
             <!-- TEST KEY FOR HEROKU -->
             <button type="submit">Submit</button>
         </form>
