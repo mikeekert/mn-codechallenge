@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 router.post('/', (req, res) => {
     const user = req.body;
     const email = req.body.email;
-    const recapcha = req.body.g-recaptcha-response;
+    // const recapcha = req.body.g-recaptcha-response;
     const secret = process.env.V2PASS;
     console.log(req.body);
 
