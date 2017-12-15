@@ -12,12 +12,15 @@ myApp
                     'g-recaptcha-response': vcRecaptchaService.getResponse()
                 };
                 console.log(post_data);
-
-                $http
+                if (!g-recaptcha-response) {
+                    alert('complete the captcha');
+                } else {
+                    $http
                     .post('/contact/', post_data)
                     .then((response) => {
-
                     });
+                }
+
             }
         };
     });

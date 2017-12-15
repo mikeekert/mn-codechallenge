@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
         return res.json({"responseCode": 1, "responseDesc": "Please select captcha"});
     }
 
-    // build API call to verify capcha
+    // build API call to verify capcha token
     const verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secret + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
 
     // start API call to google
