@@ -18,6 +18,8 @@
     <script src="../scripts/controllers/contact.controller.js"></script>
     <script src="../scripts/services/contact.service.js"></script>
 
+    <!-- google captcha -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 
 </head>
@@ -41,9 +43,13 @@
                 capcha here
 
              -->
-             <button type="submit">Submit</button>
-             <input type="checkbox" name="captcha" id="captcha">
-             <label for="captcha">Are you human?</label>
+            <button type="submit">Submit</button>
+
+            <form action="" method="POST">
+                    <div class="g-recaptcha" data-sitekey="6LfbOj0UAAAAAO3aXbfJihzf87PWz7VW630vVyvg"></div>
+                    <br/>
+                  </form>
+
         </form>
     </section>
 
