@@ -27,20 +27,23 @@
 <body ng-app="myApp">
     <section ng-controller="ContactController as cont">
         <h1>hello</h1>
-        <!-- <form action="" class="initial">
+        <form action="" class="initial">
             <input type="radio" name="filter" id="district"> <label for="district">District</label> 
             <input type="radio" name="filter" id="senator" ng-click="cont.formsend()"> <label for="senator">Senator</label>
-        </form> -->
+        </form>
 
         <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)">
             <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
             <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
             <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
             <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address">
+            <input type="text" name="user" id="address2" placeholder="address2" ng-model="cont.user.address2">
             <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
             <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments" required></textarea>
             <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capchaMessage"></div>
-            <span> {{cont.userObject.capchaMessage}} </span>
+            <div class="recaptchaMsg">
+                    <span> {{cont.userObject.capchaMessage}} </span>
+            </div>
             <!-- TEST KEY FOR HEROKU -->
             <button type="submit">Submit</button>
         </form>

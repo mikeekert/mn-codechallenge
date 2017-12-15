@@ -31,3 +31,7 @@ body {
 .contactinfo button {
   display: block;
 }
+/* line 27, ../sass/_contact.scss */
+.contactinfo .recaptchaMsg {
+  min-height: 30px;
+}
