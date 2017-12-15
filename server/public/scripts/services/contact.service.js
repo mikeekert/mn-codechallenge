@@ -13,11 +13,11 @@ myApp
                 };
                 console.log(post_data);
 
-                // $http
-                //     .post('/contact/', post_data)
-                //     .then((response) => {
+                $http
+                    .post('/contact/', post_data)
+                    .then((response) => {
 
-                //     });
+                    });
             }
         };
     });
