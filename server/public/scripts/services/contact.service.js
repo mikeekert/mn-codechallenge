@@ -12,7 +12,7 @@ myApp
                     'g-recaptcha-response': vcRecaptchaService.getResponse()
                 };
                 console.log(post_data);
-                if (!g-recaptcha-response) {
+                if (!post_data.g-recaptcha-response) {
                     alert('complete the captcha');
                 } else {
                     $http
