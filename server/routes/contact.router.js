@@ -7,6 +7,13 @@ const nodemailer = require('nodemailer');
 router.post('/', (req, res) => {
     const user = req.body;
     const email = req.body.email;
+    const recapcha = req.body.g-recaptcha-response;
+
+    console.log(user);
+
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.json({"responseCode": 1, "responseDesc": "Please select captcha"});
+    }
 
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -21,12 +28,7 @@ router.post('/', (req, res) => {
         // !TODO! adjust this for dynamic
         to: 'test.dev.mn.senate@gmail.com',
         subject: 'MN Senate Code Challenge',
-        html: '<p>Name: ' + user.fName + ' ' + user.lName +'</p>' + 
-        '<p>Email: ' + email + '</p>' + 
-        '<p>Phone: ' + user.phone + 
-        '</p><p>Address: ' + user.address + 
-        '</p><p>Comments: ' + user.comments + 
-        '</p>'
+        html: '<p>Name: ' + user.fName + ' ' + user.lName + '</p><p>Email: ' + email + '</p><p>Phone: ' + user.phone + '</p><p>Address: ' + user.address + '</p><p>Comments: ' + user.comments + '</p>'
     };
     // send nodemailer obj
     transporter.sendMail(mailOptions, (err, info) => {
