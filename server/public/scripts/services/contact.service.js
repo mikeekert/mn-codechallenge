@@ -11,7 +11,7 @@ myApp
                     'comments': user.comments,
                     'g-recaptcha-response': vcRecaptchaService.getResponse()
                 };
-                console.log(user);
+                console.log(post_data);
 
                 // $http
                 //     .post('/contact/', post_data)
