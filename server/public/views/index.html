@@ -33,12 +33,12 @@
         </form> -->
 
         <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)">
-            <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName">
-            <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName">
+            <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
+            <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
             <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
             <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address">
-            <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email">
-            <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments"></textarea>
+            <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
+            <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments" required></textarea>
             <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'"></div>
             <span ng-if="cont.userObject.capchaMessage"> {{cont.userObject.capchaMessage}} </span>
             <!-- TEST KEY FOR HEROKU -->
