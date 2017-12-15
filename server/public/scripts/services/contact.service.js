@@ -1,5 +1,8 @@
 myApp
     .factory('ContactService', function (vcRecaptchaService, $http) {
+
+        var userObject = [{}];
+        
         return {
             userObject: userObject, 
 
