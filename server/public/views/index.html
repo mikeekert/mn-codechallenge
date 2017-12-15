@@ -23,24 +23,25 @@
 </head>
 
 <body ng-app="myApp">
-    <section ng-controller="ContactController as cc">
+    <section ng-controller="ContactController as cont">
         <h1>hello</h1>
-        <form action="">
-            <input type="radio" name="filter" id="district">District
-            <input type="radio" name="filter" id="senator">Senator
-        </form>
+        <!-- <form action="" class="initial">
+            <input type="radio" name="filter" id="district"> <label for="district">District</label> 
+            <input type="radio" name="filter" id="senator" ng-click="cont.formsend()"> <label for="senator">Senator</label>
+        </form> -->
 
-        <form action="">
-            <input type="text" name="user" id="name" placeholder="name">
-            <input type="tel" name="user" id="phone" placeholder="phonenumber">
-            <input type="text" name="user" id="address" placeholder="address">
-            <input type="email" name="user" id="email" placeholder="e-mail">
-            <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments"></textarea>
-            <button type="submit">Submit</button>
+        <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)">
+            <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName">
+            <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName">
+            <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
+            <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address">
+            <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email">
+            <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments"></textarea>
             <!-- 
                 capcha here
 
              -->
+             <button type="submit">Submit</button>
              <input type="checkbox" name="captcha" id="captcha">
              <label for="captcha">Are you human?</label>
         </form>

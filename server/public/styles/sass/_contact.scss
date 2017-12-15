@@ -1,9 +1,27 @@
 body {
     background-color: white;
+    padding: 25px;
 }
 
-form {
-   input {
-    display: block;  
-   } 
+
+.initial {
+    margin: 15px 0;
+    input {
+        display: inline;
+        margin: 15px 0;
+    }
+}
+
+.contactinfo {
+    margin: 15px 0;
+    input, textarea {
+        margin: 5px 0;
+        display: block;
+    }
+    input[type="checkbox"] {
+        display: inline;
+    }
+    button {
+        display: block;
+    }
 }

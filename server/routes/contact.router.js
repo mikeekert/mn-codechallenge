@@ -2,62 +2,39 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 const path = require('path');
-const async = require('async');
 const nodemailer = require('nodemailer');
 
+router.post('/', (req, res) => {
+    const user = req.body;
+    const email = req.body.email;
 
-// serve index.html
-router.post('/', () => {
-
-    // 
-    // Hook-up email post here
-    // 
-
-    let email = '';    
-
-    // connect to db and post info
-    async.waterfall([
-        function (callback) {
-            pool.connect(function (err, client, done) {
-                if (err) {
-                    console.log('Error connecting:', err);
-                } else {
-
-                    // 
-                    // TODO -- add query/values for post message
-                    // 
-
-                    client.query(query, values, function (error) {
-                        done();
-                        callback(error, token);
-                    });
-                }
-            });
-        },
-        // output email
-        function (username, done) {
-            let transporter = nodemailer.createTransport({
-                service: 'Gmail',
-                auth: {
-                    user: 'test.dev.mn.senate@gmail.com',
-                    pass: process.env.MAILERPASSWORD
-                }
-            });
-            // configure nodemailer
-            let mailOptions = {
-                from: 'test.dev.mn.senate@gmail.com',
-                to: email,
-                subject: 'MN Senate Code Challenge',
-                html: '<p>Hello User!</p>'
-            };
-            // send new nodemailer
-            transporter.sendMail(mailOptions, function (err, info) {
-                done(err, 'done');
-            });
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: process.env.MAILERUSER,
+            pass: process.env.MAILERPASSWORD
         }
-    ], function (err) {
-        if (err) return next(err);
-        res.sendStatus('200');
+    });
+    // object to send
+    const mailOptions = {
+        from: 'test.dev.mn.senate@gmail.com',
+        // !TODO! adjust this for dynamic
+        to: 'test.dev.mn.senate@gmail.com',
+        subject: 'MN Senate Code Challenge',
+        html: '<p>Name: ' + user.fName + ' ' + user.lName +'</p>' + 
+        '<p>Email: ' + email + '</p>' + 
+        '<p>Phone: ' + user.phone + 
+        '</p><p>Address: ' + user.address + 
+        '</p><p>Comments: ' + user.comments + 
+        '</p>'
+    };
+    // send nodemailer obj
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            res.sendStatus(500);
+        } else {
+            res.sendStatus(200);
+        }
     });
 });
 

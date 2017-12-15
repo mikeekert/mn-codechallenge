@@ -1,9 +1,33 @@
 /* line 1, ../sass/_contact.scss */
 body {
   background-color: white;
+  padding: 25px;
 }
 
-/* line 6, ../sass/_contact.scss */
-form input {
+/* line 7, ../sass/_contact.scss */
+.initial {
+  margin: 15px 0;
+}
+/* line 9, ../sass/_contact.scss */
+.initial input {
+  display: inline;
+  margin: 15px 0;
+}
+
+/* line 15, ../sass/_contact.scss */
+.contactinfo {
+  margin: 15px 0;
+}
+/* line 17, ../sass/_contact.scss */
+.contactinfo input, .contactinfo textarea {
+  margin: 5px 0;
+  display: block;
+}
+/* line 21, ../sass/_contact.scss */
+.contactinfo input[type="checkbox"] {
+  display: inline;
+}
+/* line 24, ../sass/_contact.scss */
+.contactinfo button {
   display: block;
 }
