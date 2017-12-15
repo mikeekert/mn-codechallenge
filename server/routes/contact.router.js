@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const request = require('request');
 const pool = require('../modules/pool');
 const path = require('path');
 const nodemailer = require('nodemailer');
@@ -25,9 +26,7 @@ router.post('/', (req, res) => {
         if(body.success !== undefined && !body.success) {
             // capcha verification failed
           return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
-        }
-
-        // perform nodemailer after verification passed
+        } // perform nodemailer after verification passed
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
