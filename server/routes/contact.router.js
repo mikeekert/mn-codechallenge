@@ -62,7 +62,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     pool
         .connect(function (err, client, done) {
-            const query = 'SELECT * FROM districts INNER JOIN senators on districts.id=senators.district';
+            const query = 'SELECT * FROM districts INNER JOIN senators on districts.id=senators.district ORDER BY districts.districtid';
             client.query(query, (queryErr, resultObj) => {
                 done();
                 if (queryErr) {

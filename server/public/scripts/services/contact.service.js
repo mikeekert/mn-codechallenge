@@ -26,6 +26,7 @@ myApp
                     $http.post('/contact/', post_data) // post info with captcha token to server API for server-side verify
                         .then((response) => {
                         userObject.capchaMessage = response.data.responseDesc; // return captcha json message
+                        
                     });
                 }
             },
@@ -33,7 +34,7 @@ myApp
                 $http.get('/contact') // get district/sen list
                     .then((response) => {
                         console.log('resp: ', response);
-                        userObject.array = response;
+                        userObject.array = response.data;
                     });
 
             }
