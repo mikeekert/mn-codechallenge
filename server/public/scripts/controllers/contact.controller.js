@@ -3,6 +3,7 @@ myApp
         var vm = this;
         vm.service = ContactService; // bind controller/service
         vm.userObject = ContactService.userObject; // bind controller/service properties
+        vm.userObject.complete=false;
 
         vm.district = () => {
             vm.userObject.districtList = vm.userObject.array;

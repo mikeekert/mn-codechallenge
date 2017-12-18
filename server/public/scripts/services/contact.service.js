@@ -16,6 +16,7 @@ myApp
                 $http.get('/contact') // get district/sen list from db
                     .then((response) => {
                     userObject.array = response.data;
+                    userObject.complete = true;
                 });
             }
         };

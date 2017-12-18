@@ -20,49 +20,47 @@
 
     <!-- google captcha -->
     <script src="../scripts/vendors/angular-recaptcha.min.js"></script>
-
-
 </head>
 
 <body ng-app="myApp">
     <section ng-controller="ContactController as cont" ng-init="cont.service.retrieve()">
-        <form action="" class="initial">
-
-            <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">
-            <label for="district">District</label>
-
-            <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">
-            <label for="senator">Senator</label>
-
-            <select name="districts" id="districtList" ng-options="i as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
-                ng-model="cont.user.destination" ng-show="cont.Chk=='dist'">
-                <option value="">-- choose an option --</option>
-            </select>
-
-            <select name="districts" id="senatorList" ng-options="i as (i.last + ', ' + i.first) for i in cont.userObject.array | orderBy: 'last'"
-                ng-model="cont.user.destination" ng-show="cont.Chk=='sen'">
-                <option value="">-- choose an option --</option>
-            </select>
-        </form>
-
-        <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination">
-            <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
-            <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
-            <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
-            <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address" required>
-            <input type="text" name="user" id="address2" placeholder="address2" ng-model="cont.user.address2">
-            <input type="text" name="user" id="city" placeholder="city" ng-model="cont.user.city" required>
-            <input type="text" name="user" id="state" placeholder="state" ng-model="cont.user.state" required>
-            <input type="text" name="user" id="zip" placeholder="zip" ng-model="cont.user.zip" required>
-            <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
-            <input type="text" name="user" id="subject" placeholder="subject" ng-model="cont.user.subject" required>
-            <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments" required></textarea>
-            <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capcha"></div>
-            <div class="recaptchaMsg">
-                <span> {{cont.userObject.capchaMessage}} </span>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+        <div ng-hide="cont.userObject.complete">
+            <form action="" class="initial">
+                <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">
+                <label for="district">District</label>
+                <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">
+                <label for="senator">Senator</label>
+                <select name="districts" id="districtList" ng-options="i as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
+                    ng-model="cont.user.destination" ng-show="cont.Chk=='dist'">
+                    <option value="">-- choose an option --</option>
+                </select>
+                <select name="districts" id="senatorList" ng-options="i as (i.last + ', ' + i.first) for i in cont.userObject.array | orderBy: 'last'"
+                    ng-model="cont.user.destination" ng-show="cont.Chk=='sen'">
+                    <option value="">-- choose an option --</option>
+                </select>
+            </form>
+            <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination">
+                <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
+                <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
+                <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
+                <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address" required>
+                <input type="text" name="user" id="address2" placeholder="address2" ng-model="cont.user.address2">
+                <input type="text" name="user" id="city" placeholder="city" ng-model="cont.user.city" required>
+                <input type="text" name="user" id="state" placeholder="state" ng-model="cont.user.state" required>
+                <input type="text" name="user" id="zip" placeholder="zip" ng-model="cont.user.zip" required>
+                <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
+                <input type="text" name="user" id="subject" placeholder="subject" ng-model="cont.user.subject" required>
+                <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments" required></textarea>
+                <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capcha"></div>
+                <div class="recaptchaMsg">
+                    <span> {{cont.userObject.capchaMessage}} </span>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div ng-show="cont.userObject.complete">
+            <h3>Thank You for Your Submission!</h3>
+        </div>
     </section>
 
 </body>
