@@ -68,7 +68,7 @@ router.post('/', (req, res) => {
                 user.subject,
                 user.comments,
                 user.destination.id,
-                user.destination.districtid
+                user.destination.district
             ];
             client.query(query, target, (queryErr, resultObj) => {
                 done();
