@@ -28,10 +28,10 @@
     <section ng-controller="ContactController as cont" ng-init="cont.service.retrieve()">
         <form action="" class="initial">
 
-            <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk">
+            <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">
             <label for="district">District</label>
 
-            <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk">
+            <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">
             <label for="senator">Senator</label>
 
             <select name="districts" id="districtList" ng-options="i as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
