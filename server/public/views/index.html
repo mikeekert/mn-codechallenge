@@ -45,7 +45,7 @@
             </select>
         </form>
 
-        <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)">
+        <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination">
             <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
             <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
             <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
