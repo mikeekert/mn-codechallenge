@@ -55,8 +55,8 @@ router.post('/', (req, res) => {
         pool // post user comments/info to DB
             .connect(function (err, client, done) {
             const query = 'INSERT INTO comments(first, last, email, address1, address2' +
-                    ', zip, state, subject, comments, senatorid, districtid) VALUES($1, $' +
-                    '2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
+                    ', zip, state, subject, comments, senatorid, districtid, phone) VALUES($1, $' +
+                    '2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)';
             const target = [
                 user.fName,
                 user.lName,
@@ -68,7 +68,8 @@ router.post('/', (req, res) => {
                 user.subject,
                 user.comments,
                 user.destination.id,
-                user.destination.district
+                user.destination.district,
+                user.phone
             ];
             client.query(query, target, (queryErr, resultObj) => {
                 done();
