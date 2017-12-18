@@ -10,13 +10,13 @@ myApp
                 $http.post('/contact/', user) // post for mdata, along with captcha token, to server API for server-side verify
                     .then((response) => {
                     userObject.capchaMessage = response.data.responseDesc; // return captcha json message
+                    userObject.complete = true;
                 });
             },
             retrieve: () => {
                 $http.get('/contact') // get district/sen list from db
                     .then((response) => {
                     userObject.array = response.data;
-                    userObject.complete = true;
                 });
             }
         };
