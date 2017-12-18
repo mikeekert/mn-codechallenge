@@ -38,9 +38,9 @@ router.post('/', (req, res) => {
         // nodemailer mail object to send
         const mailOptions = {
             from: 'test.dev.mn.senate@gmail.com',
-            to: req.body.destEmail,
+            to: req.body.destination.destEmail,
             subject: 'MN Senate Code Challenge',
-            html: '<p>Name: ' + user.srcFirstName + ' ' + user.srcLastName + '</p><p>Email: ' + user.srcEmail + '</p><p>Phone: ' + user.srcPhone + '</p><p>Address: ' + user.srcAddress + '</p><p>Comments: ' + user.srcComments + '</p>'
+            html: '<p>Name: ' + user.fName + ' ' + user.lName + '</p><p>Email: ' + user.email + '</p><p>Phone: ' + user.phone + '</p><p>Address: ' + user.address + '</p><p>Comments: ' + user.comments + '</p>'
         };
 
         // send nodemailer obj
@@ -52,20 +52,20 @@ router.post('/', (req, res) => {
             }
         });
 
-        pool // post user comments/info to DB
-            .connect(function (err, client, done) {
+        // pool // post user comments/info to DB
+        //     .connect(function (err, client, done) {
 
-            const query = 'INSERT INTO ';
-            client.query(query, (queryErr, resultObj) => {
-                done();
-                if (queryErr) {
-                    console.log(queryErr);
-                    res.sendStatus(500);
-                } else {
-                    res.send(resultObj.rows);
-                }
-            });
-        });
+        //     const query = 'INSERT INTO ';
+        //     client.query(query, (queryErr, resultObj) => {
+        //         done();
+        //         if (queryErr) {
+        //             console.log(queryErr);
+        //             res.sendStatus(500);
+        //         } else {
+        //             res.send(resultObj.rows);
+        //         }
+        //     });
+        // });
     });
 });
 
