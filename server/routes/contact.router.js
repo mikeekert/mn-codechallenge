@@ -6,6 +6,7 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 router.post('/', (req, res) => {
+    console.log(request.body.data);
     const user = req.body;
     const secret = process.env.V2PASS;
 
@@ -50,6 +51,21 @@ router.post('/', (req, res) => {
             } else {
                 res.sendStatus(200);
             }
+        });
+
+        pool // post user comments/info to DB
+        .connect(function (err, client, done) {
+
+            const query = 'INSERT INTO ';
+            client.query(query, (queryErr, resultObj) => {
+                done();
+                if (queryErr) {
+                    console.log(queryErr);
+                    res.sendStatus(500);
+                } else {
+                    res.send(resultObj.rows);
+                }
+            });
         });
     });
 });
