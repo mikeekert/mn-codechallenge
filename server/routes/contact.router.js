@@ -40,17 +40,7 @@ router.post('/', (req, res) => {
             from: 'test.dev.mn.senate@gmail.com',
             to: req.body.destination.email,
             subject: 'MN Senate Code Challenge',
-            html: '<p>Name: ' + user.fName + ' ' + user.lName + 
-            '</p><p>Email: ' + user.email + 
-            '</p><p>Phone: ' + user.phone + 
-            '</p><p>Address: ' + user.address + 
-            '</p><p>Address2: ' + user.address2 + 
-            '</p><p>City: ' + user.city + 
-            '</p><p>State: ' + user.state + 
-            '</p><p>Zip: ' + user.zip + 
-            '</p><p>Subject: ' + user.subject + 
-            '</p><p>Comments: ' + user.comments + 
-            '</p>'
+            html: '<p>Name: ' + user.fName + ' ' + user.lName + '</p><p>Email: ' + user.email + '</p><p>Phone: ' + user.phone + '</p><p>Address: ' + user.address + '</p><p>Address2: ' + user.address2 + '</p><p>City: ' + user.city + '</p><p>State: ' + user.state + '</p><p>Zip: ' + user.zip + '</p><p>Subject: ' + user.subject + '</p><p>Comments: ' + user.comments + '</p>'
         };
 
         // send nodemailer obj
@@ -62,20 +52,34 @@ router.post('/', (req, res) => {
             }
         });
 
-        // pool // post user comments/info to DB
-        //     .connect(function (err, client, done) {
-
-        //     const query = 'INSERT INTO ';
-        //     client.query(query, (queryErr, resultObj) => {
-        //         done();
-        //         if (queryErr) {
-        //             console.log(queryErr);
-        //             res.sendStatus(500);
-        //         } else {
-        //             res.send(resultObj.rows);
-        //         }
-        //     });
-        // });
+        pool // post user comments/info to DB
+            .connect(function (err, client, done) {
+            const query = 'INSERT INTO "public"."comments"("first", "last", "email", "address1", "address2"' +
+                    ', "zip", "state", "subject", "comments", "senatorid", "districtid") VALUES($1, $' +
+                    '2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
+            const target = [
+                user.fName,
+                user.lName,
+                user.email,
+                user.address,
+                user.address2,
+                user.zip,
+                user.state,
+                user.subject,
+                user.comments,
+                user.destination.id,
+                user.destination.districtid
+            ];
+            client.query(query, target, (queryErr, resultObj) => {
+                done();
+                if (queryErr) {
+                    console.log(queryErr);
+                    res.sendStatus(500);
+                } else {
+                    res.send(resultObj.rows);
+                }
+            });
+        });
     });
 });
 
