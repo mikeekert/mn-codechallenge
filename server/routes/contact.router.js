@@ -40,7 +40,17 @@ router.post('/', (req, res) => {
             from: 'test.dev.mn.senate@gmail.com',
             to: req.body.destination.destEmail,
             subject: 'MN Senate Code Challenge',
-            html: '<p>Name: ' + user.fName + ' ' + user.lName + '</p><p>Email: ' + user.email + '</p><p>Phone: ' + user.phone + '</p><p>Address: ' + user.address + '</p><p>Comments: ' + user.comments + '</p>'
+            html: '<p>Name: ' + user.fName + ' ' + user.lName + 
+            '</p><p>Email: ' + user.email + 
+            '</p><p>Phone: ' + user.phone + 
+            '</p><p>Address: ' + user.address + 
+            '</p><p>Address2: ' + user.address2 + 
+            '</p><p>City: ' + user.city + 
+            '</p><p>State: ' + user.state + 
+            '</p><p>Zip: ' + user.zip + 
+            '</p><p>Subject: ' + user.subject + 
+            '</p><p>Comments: ' + user.comments + 
+            '</p>'
         };
 
         // send nodemailer obj
