@@ -6,7 +6,7 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 router.post('/', (req, res) => {
-    console.log(req.body.data);
+    console.log('data in /get route', req.body.data);
     const user = req.body;
     const secret = process.env.V2PASS;
 
