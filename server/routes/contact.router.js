@@ -73,9 +73,9 @@ router.post('/', (req, res) => {
             client.query(query, target, (queryErr, resultObj) => {
                 done();
                 if (queryErr) {
-                    console.log(queryErr);
                     res.sendStatus(500);
                 } else {
+                    console.log('posted!');
                     res.send(resultObj.rows);
                 }
             });
