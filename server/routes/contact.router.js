@@ -11,9 +11,9 @@ router.post('/', (req, res) => {
     const secret = process.env.V2PASS;
 
     // checking capcha being empty
-    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-        return res.json({"responseDesc": "Please select captcha"});
-    }
+    // if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    //     return res.json({"responseDesc": "Please select captcha"});
+    // }
 
     // build API call variable to verify capcha token
     const verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secret + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
@@ -21,10 +21,10 @@ router.post('/', (req, res) => {
     // start API call to google
     request(verificationUrl, function (error, response, body) {
         body = JSON.parse(body);
-        if (body.success !== undefined && !body.success) {
-            // capcha verification failed
-            return res.json({"responseCode": 1, "responseDesc": "Failed captcha verification"});
-        }
+        // if (body.success !== undefined && !body.success) {
+        //     // capcha verification failed
+        //     return res.json({"responseCode": 1, "responseDesc": "Failed captcha verification"});
+        // }
 
         // perform nodemailer after verification passed
         const transporter = nodemailer.createTransport({ // using Google to send mail, credentials in .env
@@ -73,6 +73,7 @@ router.post('/', (req, res) => {
             client.query(query, target, (queryErr, resultObj) => {
                 done();
                 if (queryErr) {
+                    console.log('failed', queryErr);
                     res.sendStatus(500);
                 } else {
                     console.log('posted!');
