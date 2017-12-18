@@ -3,7 +3,6 @@ body {
     padding: 25px;
 }
 
-
 .initial {
     margin: 15px 0;
     input {
@@ -18,7 +17,8 @@ body {
 
 .contactinfo {
     margin: 15px 0;
-    input, textarea {
+    input,
+    textarea {
         margin: 5px 0;
         display: block;
     }
@@ -32,6 +32,6 @@ body {
         min-height: 30px;
     }
     #subject {
-        margin-top:25px;
+        margin-top: 25px;
     }
 }

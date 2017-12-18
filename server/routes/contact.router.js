@@ -40,8 +40,7 @@ router.post('/', (req, res) => {
             from: 'test.dev.mn.senate@gmail.com',
             to: req.body.destEmail,
             subject: 'MN Senate Code Challenge',
-            html: '<p>Name: ' + user.srcFirstName + ' ' + user.srcLastName + '</p><p>Email: ' + user.srcEmail + '</p><p>Phone: ' +
-            user.srcPhone + '</p><p>Address: ' + user.srcAddress + '</p><p>Comments: ' + user.srcComments + '</p>'
+            html: '<p>Name: ' + user.srcFirstName + ' ' + user.srcLastName + '</p><p>Email: ' + user.srcEmail + '</p><p>Phone: ' + user.srcPhone + '</p><p>Address: ' + user.srcAddress + '</p><p>Comments: ' + user.srcComments + '</p>'
         };
 
         // send nodemailer obj
@@ -54,7 +53,7 @@ router.post('/', (req, res) => {
         });
 
         pool // post user comments/info to DB
-        .connect(function (err, client, done) {
+            .connect(function (err, client, done) {
 
             const query = 'INSERT INTO ';
             client.query(query, (queryErr, resultObj) => {

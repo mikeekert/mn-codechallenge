@@ -4,27 +4,28 @@ body {
   padding: 25px;
 }
 
-/* line 7, ../sass/_contact.scss */
+/* line 6, ../sass/_contact.scss */
 .initial {
   margin: 15px 0;
 }
-/* line 9, ../sass/_contact.scss */
+/* line 8, ../sass/_contact.scss */
 .initial input {
   display: inline;
   margin: 15px 0;
 }
-/* line 13, ../sass/_contact.scss */
+/* line 12, ../sass/_contact.scss */
 .initial select {
   display: block;
   margin-bottom: 15px;
 }
 
-/* line 19, ../sass/_contact.scss */
+/* line 18, ../sass/_contact.scss */
 .contactinfo {
   margin: 15px 0;
 }
-/* line 21, ../sass/_contact.scss */
-.contactinfo input, .contactinfo textarea {
+/* line 20, ../sass/_contact.scss */
+.contactinfo input,
+.contactinfo textarea {
   margin: 5px 0;
   display: block;
 }
