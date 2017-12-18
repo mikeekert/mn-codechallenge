@@ -6,6 +6,7 @@ myApp
 
             formsend: (user) => { // send user data to server
                 user['g-recaptcha-response'] = vcRecaptchaService.getResponse(); // add captcha server token to payload
+                console.log(user);
                 $http.post('/contact/', user) // post for mdata, along with captcha token, to server API for server-side verify
                     .then((response) => {
                     userObject.capchaMessage = response.data.responseDesc; // return captcha json message
