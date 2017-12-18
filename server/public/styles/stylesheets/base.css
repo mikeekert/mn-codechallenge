@@ -38,10 +38,14 @@ body {
   display: block;
 }
 /* line 31, ../sass/_contact.scss */
+.contactinfo button[disabled] {
+  opacity: .5;
+}
+/* line 34, ../sass/_contact.scss */
 .contactinfo .recaptchaMsg {
   min-height: 30px;
 }
-/* line 34, ../sass/_contact.scss */
+/* line 37, ../sass/_contact.scss */
 .contactinfo #subject {
   margin-top: 25px;
 }

@@ -28,6 +28,9 @@ body {
     button {
         display: block;
     }
+    button[disabled] {
+        opacity: .5;
+    }
     .recaptchaMsg {
         min-height: 30px;
     }

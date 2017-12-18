@@ -39,23 +39,29 @@
                     <option value="">-- choose an option --</option>
                 </select>
             </form>
-            <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination">
-                <input type="text" name="user" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
-                <input type="text" name="user" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
-                <input type="tel" name="user" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
-                <input type="text" name="user" id="address" placeholder="address" ng-model="cont.user.address" required>
-                <input type="text" name="user" id="address2" placeholder="address2" ng-model="cont.user.address2">
-                <input type="text" name="user" id="city" placeholder="city" ng-model="cont.user.city" required>
-                <input type="text" name="user" id="state" placeholder="state" ng-model="cont.user.state" required>
-                <input type="text" name="user" id="zip" placeholder="zip" ng-model="cont.user.zip" required>
-                <input type="email" name="user" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
-                <input type="text" name="user" id="subject" placeholder="subject" ng-model="cont.user.subject" required>
+            <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination" name="contact">
+                <input type="text" name="fname" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
+                <input type="text" name="lname" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
+
+
+
+
+                <input type="tel" name="phone" id="phone" placeholder="phonenumber" ng-model="cont.user.phone" class="form-control" ng-minlength="10"
+                    ng-maxlength="10" ng-required="true">
+
+                <input type="text" name="address" id="address" placeholder="address" ng-model="cont.user.address" required>
+                <input type="text" name="address2" id="address2" placeholder="address2" ng-model="cont.user.address2">
+                <input type="text" name="city" id="city" placeholder="city" ng-model="cont.user.city" required>
+                <input type="text" name="state" id="state" placeholder="state" ng-model="cont.user.state" required>
+                <input type="text" name="zip" id="zip" placeholder="zip" ng-model="cont.user.zip" required>
+                <input type="email" name="email" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
+                <input type="text" name="subject" id="subject" placeholder="subject" ng-model="cont.user.subject" required>
                 <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments" required></textarea>
                 <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capcha"></div>
                 <div class="recaptchaMsg">
                     <span> {{cont.userObject.capchaMessage}} </span>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" ng-disabled="contact.$pending">Submit</button>
             </form>
         </div>
         <div ng-show="cont.userObject.complete">
