@@ -10,7 +10,7 @@ myApp
                 $http.post('/contact/', user) // post for mdata, along with captcha token, to server API for server-side verify
                     .then((response) => {
                     userObject.capchaMessage = response.data.responseDesc; // return captcha json message
-                    userObject.complete = true;
+                    userObject.complete = true; // display success section of index page
                 });
             },
             retrieve: () => {
