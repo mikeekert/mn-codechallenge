@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
         // nodemailer mail object to send
         const mailOptions = {
             from: 'test.dev.mn.senate@gmail.com',
-            to: req.body.destination.destEmail,
+            to: req.body.destination.email,
             subject: 'MN Senate Code Challenge',
             html: '<p>Name: ' + user.fName + ' ' + user.lName + 
             '</p><p>Email: ' + user.email + 
