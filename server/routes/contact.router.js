@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
 
         pool // post user comments/info to DB
             .connect(function (err, client, done) {
-            const query = 'INSERT INTO "public"."comments"("first", "last", "email", "address1", "address2"' +
+            const query = 'INSERT INTO "comments"("first", "last", "email", "address1", "address2"' +
                     ', "zip", "state", "subject", "comments", "senatorid", "districtid") VALUES($1, $' +
                     '2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
             const target = [

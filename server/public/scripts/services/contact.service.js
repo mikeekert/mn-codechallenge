@@ -11,6 +11,7 @@ myApp
                     .then((response) => {
                     userObject.capchaMessage = response.data.responseDesc; // return captcha json message
                     userObject.complete = true; // display success section of index page
+                    console.log(response);
                 });
             },
             retrieve: () => {
