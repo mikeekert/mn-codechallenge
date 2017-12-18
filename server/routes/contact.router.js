@@ -7,15 +7,12 @@ const nodemailer = require('nodemailer');
 
 router.post('/', (req, res) => {
     const user = req.body;
-    const email = req.body.email;
     const secret = process.env.V2PASS;
 
     // checking capcha being empty
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
         return res.json({"responseDesc": "Please select captcha"});
     }
-
-    
 
     // build API call variable to verify capcha token
     const verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secret + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
@@ -40,12 +37,10 @@ router.post('/', (req, res) => {
         // nodemailer mail object to send
         const mailOptions = {
             from: 'test.dev.mn.senate@gmail.com',
-
-            // !TODO! adjust this for dynamic
-            to: 'test.dev.mn.senate@gmail.com',
-
+            to: req.body.destEmail,
             subject: 'MN Senate Code Challenge',
-            html: '<p>Name: ' + user.fName + ' ' + user.lName + '</p><p>Email: ' + email + '</p><p>Phone: ' + user.phone + '</p><p>Address: ' + user.address + '</p><p>Comments: ' + user.comments + '</p>'
+            html: '<p>Name: ' + user.srcFirstName + ' ' + user.srcLastName + '</p><p>Email: ' + user.srcEmail + '</p><p>Phone: ' +
+            user.srcPhone + '</p><p>Address: ' + user.srcAddress + '</p><p>Comments: ' + user.srcComments + '</p>'
         };
 
         // send nodemailer obj
@@ -62,7 +57,8 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     pool
         .connect(function (err, client, done) {
-            const query = 'SELECT * FROM districts INNER JOIN senators on districts.id=senators.district ORDER BY districts.districtid';
+            const query = 'SELECT * FROM districts INNER JOIN senators on districts.id=senators.district OR' +
+                    'DER BY districts.districtid';
             client.query(query, (queryErr, resultObj) => {
                 done();
                 if (queryErr) {
@@ -74,6 +70,5 @@ router.get('/', (req, res) => {
             });
         });
 });
-
 
 module.exports = router;

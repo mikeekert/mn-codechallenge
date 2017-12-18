@@ -26,23 +26,23 @@
 
 <body ng-app="myApp">
     <section ng-controller="ContactController as cont" ng-init="cont.service.retrieve()">
-        <h1>hello</h1>
         <form action="" class="initial">
 
-            <input type="radio" name="filter" id="district">
+            <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk">
             <label for="district">District</label>
 
-            <input type="radio" name="filter" id="senator" ng-click="cont.formsend()">
+            <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk">
             <label for="senator">Senator</label>
 
-            <select name="districts" id="districtList" ng-options="i.dist as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
-                ng-model="cont.districts" ng-init="cont.districts = ''">
+            <select name="districts" id="districtList" ng-options="i as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
+                ng-model="cont.user.destination" ng-show="cont.Chk=='dist'">
+                <option value="">-- choose an option --</option>
             </select>
 
-            <select name="districts" id="senatorList" ng-options="i.senator as (i.last + ', ' + i.first) for i in cont.userObject.array | orderBy: 'districtid'"
-                ng-model="cont.senators" ng-init="cont.senators = ''">
+            <select name="districts" id="senatorList" ng-options="i as (i.last + ', ' + i.first) for i in cont.userObject.array | orderBy: 'last'"
+                ng-model="cont.user.destination" ng-show="cont.Chk=='sen'">
+                <option value="">-- choose an option --</option>
             </select>
-
         </form>
 
         <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)">

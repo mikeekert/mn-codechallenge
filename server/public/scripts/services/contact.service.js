@@ -8,35 +8,29 @@ myApp
 
             formsend: (user) => { // send user data to server
                 userObject.capchaMessage = ''; // clear capcha message on send
-
-                if (!grecaptcha.getResponse().length) { // quick client side check to alert user to use the captcha
-                    userObject.capchaMessage = 'Complete the captcha before sending';
-                } else {
-                    const post_data = { //prepare payload
-                        'to': user.recipient,
-                        'fName': user.fName,
-                        'lName': user.lName,
-                        'phone': user.phone,
-                        'address': user.address,
-                        'email': user.email,
-                        'comments': user.comments,
-                        'g-recaptcha-response': vcRecaptchaService.getResponse() // grab captcha token from form
-                    };
-
-                    $http.post('/contact/', post_data) // post info with captcha token to server API for server-side verify
-                        .then((response) => {
-                        userObject.capchaMessage = response.data.responseDesc; // return captcha json message
-                        
-                    });
-                }
+                const post_data = { //prepare payload
+                    'destEmail': user.destination.email,
+                    'destFirstName': user.destination.first,
+                    'destLastName': user.destination.last,
+                    'destDistrict': user.destination.districtid,
+                    'srcFirstName': user.fName,
+                    'srcLastName': user.lName,
+                    'srcPhone': user.phone,
+                    'srcAddress': user.address,
+                    'srcEmail': user.email,
+                    'srcComments': user.comments,
+                    'g-recaptcha-response': vcRecaptchaService.getResponse() // grab captcha token from webform
+                };
+                $http.post('/contact/', post_data) // post data, along with captcha token, to server API for server-side verify
+                    .then((response) => {
+                    userObject.capchaMessage = response.data.responseDesc; // return captcha json message
+                });
             },
             retrieve: () => {
-                $http.get('/contact') // get district/sen list
+                $http.get('/contact') // get district/sen list from db
                     .then((response) => {
-                        console.log('resp: ', response);
-                        userObject.array = response.data;
-                    });
-
+                    userObject.array = response.data;
+                });
             }
         };
     });
