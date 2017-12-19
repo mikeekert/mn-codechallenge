@@ -4,7 +4,7 @@ var SelectState;
     'use strict';
     var SelectStateDirective = (function () {
         function SelectStateDirective() {
-            this.template = '<select class="form-control"><option ng-repeat="state in states" value="{{state.code}}">{{state.name}}</option></select>';
+            this.template = '<select class="form-control"><option disabled selected value> -- select an option -- </option><option ng-repeat="state in states" value="{{state.code}}">{{state.name}}</option></select>';
             this.scope = {};
             var states = [
                 { code: 'AL', name: 'Alabama' },

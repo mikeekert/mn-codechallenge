@@ -59,11 +59,11 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="fName">First Name:</label>
-                            <input class="form-control" type="text" name="fname" id="fName" ng-model="cont.user.src.fName" required>
+                            <input class="form-control" type="text" name="fname" id="fName" ng-model="cont.user.src.fName" ng-required="true">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="lName">Last Name:</label>
-                            <input class="form-control" type="text" name="lname" id="lName" ng-model="cont.user.src.lName" required>
+                            <input class="form-control" type="text" name="lname" id="lName" ng-model="cont.user.src.lName" ng-required="true">
                         </div>
                     </div>
                     <div class="row">
@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="address">Address:</label>
-                            <input class="form-control" type="text" name="address" id="address" ng-model="cont.user.src.address" required>
+                            <input class="form-control" type="text" name="address" id="address" ng-model="cont.user.src.address" ng-required="true">
                         </div>
                         <div class="form-group col-md-6">
                                 <label class="col-form-label" for="address2">Address 2:</label>
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="city">City:</label>
-                            <input class="form-control" type="text" name="city" id="city" ng-model="cont.user.src.city" required>
+                            <input class="form-control" type="text" name="city" id="city" ng-model="cont.user.src.city" ng-required="true">
                         </div>
                         <div class="form-group col-md-4">
                             <label class="col-form-label" for="state">State:</label>
@@ -94,25 +94,25 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label class="col-form-label" for="zip">Zip:</label>
-                            <input class="form-control" type="text" name="zip" id="zip" ng-model="cont.user.src.zip" required>
+                            <input class="form-control" type="text" name="zip" id="zip" ng-model="cont.user.src.zip" ng-required="true" ng-maxlength="5">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="email">E-mail:</label>
-                            <input class="form-control" type="email" name="email" id="email" ng-model="cont.user.src.email" required>
+                            <input class="form-control" type="email" name="email" id="email" ng-model="cont.user.src.email" ng-required="true">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-form-label" for="subject">Subject:</label>
-                            <input class="form-control" type="text" name="subject" id="subject" ng-model="cont.user.src.subject" required>
+                            <input class="form-control" type="text" name="subject" id="subject" ng-model="cont.user.src.subject" ng-required="true">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-form-label" for="comment">Comments:</label>
-                            <textarea class="form-control" name="comment" id="comment" cols="40" rows="5" ng-model="cont.user.src.comments" required></textarea>
+                            <textarea class="form-control" name="comment" id="comment" cols="40" rows="5" ng-model="cont.user.src.comments" ng-required="true"></textarea>
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@
 
                     <div class="row">
                             <div class="form-group col-md-6">
-                                    <button class="btn btn-primary btn-lg" type="submit btn btn-primary btn-lg" ng-disabled="contact.$pending">Submit</button>
+                                    <button class="btn btn-primary btn-lg" type="submit btn btn-primary btn-lg" ng-disabled="!cont.userObject.btn">Submit</button>
 
                             </div>
                         </div>
