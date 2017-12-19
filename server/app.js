@@ -1,14 +1,14 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 // Server Port
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // Route definition
-var indexRouter = require('./routes/index.router');
-var contactRouter = require('./routes/contact.router');
+const indexRouter = require('./routes/index.router');
+const contactRouter = require('./routes/contact.router');
 
 // Body Parser Middleware
 app.use(bodyParser.json());
