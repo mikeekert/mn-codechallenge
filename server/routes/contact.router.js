@@ -6,7 +6,8 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 router.post('/', (req, res) => {
-    const user = req.body;
+    const user = req.body.src;
+    const dest = req.body.destination;
     const secret = process.env.V2PASS;
 
     // checking capcha being empty
@@ -37,7 +38,7 @@ router.post('/', (req, res) => {
         // nodemailer mail object to send
         const mailOptions = {
             from: 'test.dev.mn.senate@gmail.com',
-            to: req.body.destination.email,
+            to: dest.email,
             subject: 'MN Senate Code Challenge',
             html: '<p>Name: ' + user.fName + ' ' + user.lName + '</p><p>Email: ' + user.email + '</p><p>Phone: ' + user.phone + '</p><p>Address: ' + user.address + '</p><p>Address2: ' + user.address2 + '</p><p>City: ' + user.city + '</p><p>State: ' + user.state + '</p><p>Zip: ' + user.zip + '</p><p>Subject: ' + user.subject + '</p><p>Comments: ' + user.comments + '</p>'
         };
@@ -67,8 +68,8 @@ router.post('/', (req, res) => {
                 user.state,
                 user.subject,
                 user.comments,
-                user.destination.id,
-                user.destination.district,
+                dest.id,
+                dest.district,
                 user.phone
             ];
             client.query(query, target, (queryErr, resultObj) => {

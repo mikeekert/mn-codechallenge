@@ -32,87 +32,87 @@
             <form action="" class="initial" data-toggle="buttons">
                 <h4>Search By:</h4>
                 <label for="district" class="btn btn-light" ng-class="{active: cont.Chk == 'dist'}">
-                    <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk" ng-change="cont.destination=cont.destination[0]">District
+                    <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">District
                 </label>
                 <label for="senator" class="btn btn-light" ng-class="{active: cont.Chk == 'sen'}">
-                    <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk" ng-change="cont.destination=cont.destination[0]">Senator
+                    <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]">Senator
                 </label>
                 <select class="form-control" name="districts" id="districtList" ng-options="i as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
-                    ng-model="cont.destination" ng-show="cont.Chk=='dist'" ng-change="cont.user={}">
+                    ng-model="cont.user.destination" ng-show="cont.Chk=='dist'" ng-change="cont.user.src={}">
                     <option value="">-- Choose an option --</option>
                 </select>
                 <select class="form-control" name="districts" id="senatorList" ng-options="i as (i.last + ', ' + i.first) for i in cont.userObject.array | orderBy: 'last'"
-                    ng-model="cont.destination" ng-show="cont.Chk=='sen'" ng-change="cont.user={}">
+                    ng-model="cont.user.destination" ng-show="cont.Chk=='sen'" ng-change="cont.user.src={}">
                     <option value="">-- Choose an option --</option>
                 </select>
             </form>
-            <div class="row container-fluid" ng-show="cont.destination">
+            <div class="row container-fluid" ng-show="cont.user.destination">
                 <div class="card col-md-2">
-                    <img class="card-img-top" src="http://placeholder.pics/svg/100x100/888888/MyLabel"
+                    <img class="card-img-top" src="https://placeholder.pics/svg/100x100/888888/MyLabel"
                         alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">Senator Information</h4>
                         <p class="card-text">Placeholder Content</p>
                     </div>
                 </div>
-                <form class="contactinfo form-group col-md-8" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.destination" name="contact">
+                <form class="contactinfo form-group col-md-8" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination" name="contact">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="fName">First Name:</label>
-                            <input class="form-control" type="text" name="fname" id="fName" ng-model="cont.user.fName" required>
+                            <input class="form-control" type="text" name="fname" id="fName" ng-model="cont.user.src.fName" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="lName">Last Name:</label>
-                            <input class="form-control" type="text" name="lname" id="lName" ng-model="cont.user.lName" required>
+                            <input class="form-control" type="text" name="lname" id="lName" ng-model="cont.user.src.lName" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="phone">Telephone:</label>
-                            <input class="form-control" type="tel" name="phone" id="phone" ng-model="cont.user.phone">
+                            <input class="form-control" type="tel" name="phone" id="phone" ng-model="cont.user.src.phone">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="address">Address:</label>
-                            <input class="form-control" type="text" name="address" id="address" ng-model="cont.user.address" required>
+                            <input class="form-control" type="text" name="address" id="address" ng-model="cont.user.src.address" required>
                         </div>
                         <div class="form-group col-md-6">
                                 <label class="col-form-label" for="address2">Address 2:</label>
-                                <input class="form-control" type="text" name="address2" id="address2" ng-model="cont.user.address2">
+                                <input class="form-control" type="text" name="address2" id="address2" ng-model="cont.user.src.address2">
                             </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="city">City:</label>
-                            <input class="form-control" type="text" name="city" id="city" ng-model="cont.user.city" required>
+                            <input class="form-control" type="text" name="city" id="city" ng-model="cont.user.src.city" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label class="col-form-label" for="state">State:</label>
-                            <select-state type="text" name="state" id="state" ng-model="cont.user.state" require></select-state>
+                            <select-state type="text" name="state" id="state" ng-model="cont.user.src.state" require></select-state>
                         </div>
                         <div class="form-group col-md-2">
                             <label class="col-form-label" for="zip">Zip:</label>
-                            <input class="form-control" type="text" name="zip" id="zip" ng-model="cont.user.zip" required>
+                            <input class="form-control" type="text" name="zip" id="zip" ng-model="cont.user.src.zip" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="email">E-mail:</label>
-                            <input class="form-control" type="email" name="email" id="email" ng-model="cont.user.email" required>
+                            <input class="form-control" type="email" name="email" id="email" ng-model="cont.user.src.email" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-form-label" for="subject">Subject:</label>
-                            <input class="form-control" type="text" name="subject" id="subject" ng-model="cont.user.subject" required>
+                            <input class="form-control" type="text" name="subject" id="subject" ng-model="cont.user.src.subject" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-form-label" for="comment">Comments:</label>
-                            <textarea class="form-control" name="comment" id="comment" cols="40" rows="5" ng-model="cont.user.comments" required></textarea>
+                            <textarea class="form-control" name="comment" id="comment" cols="40" rows="5" ng-model="cont.user.src.comments" required></textarea>
                         </div>
                     </div>
 
