@@ -6,14 +6,13 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 router.post('/', (req, res) => {
-    console.log('data in /get route', req.body);
     const user = req.body;
     const secret = process.env.V2PASS;
 
     // checking capcha being empty
-    // if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-    //     return res.json({"responseDesc": "Please select captcha"});
-    // }
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.json({"responseDesc": "Please select captcha"});
+    }
 
     // build API call variable to verify capcha token
     const verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secret + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
@@ -21,10 +20,10 @@ router.post('/', (req, res) => {
     // start API call to google
     request(verificationUrl, function (error, response, body) {
         body = JSON.parse(body);
-        // if (body.success !== undefined && !body.success) {
-        //     // capcha verification failed
-        //     return res.json({"responseCode": 1, "responseDesc": "Failed captcha verification"});
-        // }
+        if (body.success !== undefined && !body.success) {
+            // capcha verification failed
+            return res.json({"responseCode": 1, "responseDesc": "Failed captcha verification"});
+        }
 
         // perform nodemailer after verification passed
         const transporter = nodemailer.createTransport({ // using Google to send mail, credentials in .env
@@ -54,9 +53,9 @@ router.post('/', (req, res) => {
 
         pool // post user comments/info to DB
             .connect(function (err, client, done) {
-            const query = 'INSERT INTO comments(first, last, email, address1, address2' +
-                    ', zip, state, subject, comments, senatorid, districtid, phone) VALUES($1, $' +
-                    '2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)';
+            const query = 'INSERT INTO comments(first, last, email, address1, address2, zip, state, subject' +
+                    ', comments, senatorid, districtid, phone) VALUES($1, $2, $3, $4, $5, $6, $7, $8,' +
+                    ' $9, $10, $11, $12)';
             const target = [
                 user.fName,
                 user.lName,
@@ -74,10 +73,8 @@ router.post('/', (req, res) => {
             client.query(query, target, (queryErr, resultObj) => {
                 done();
                 if (queryErr) {
-                    console.log('failed', queryErr);
                     res.sendStatus(500);
                 } else {
-                    console.log('posted!');
                     res.send(resultObj.rows);
                 }
             });
@@ -93,7 +90,6 @@ router.get('/', (req, res) => {
             client.query(query, (queryErr, resultObj) => {
                 done();
                 if (queryErr) {
-                    console.log(queryErr);
                     res.sendStatus(500);
                 } else {
                     res.send(resultObj.rows);

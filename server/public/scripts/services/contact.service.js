@@ -3,21 +3,18 @@ myApp
         var userObject = [{}]; // create empty prop to hold service values
         return {
             userObject: userObject,
-
             formsend: (user) => { // send user data to server
                 user['g-recaptcha-response'] = vcRecaptchaService.getResponse(); // add captcha server token to payload
-                console.log(user);
                 $http.post('/contact/', user) // post for mdata, along with captcha token, to server API for server-side verify
                     .then((response) => {
-                    userObject.capchaMessage = response.data.responseDesc; // return captcha json message
+                    userObject.capchaMessage = response.data.responseDesc; // return captcha json message to DOM
                     userObject.complete = true; // display success section of index page
-                    console.log(response);
                 });
             },
             retrieve: () => {
-                $http.get('/contact') // get district/sen list from db
+                $http.get('/contact') // get district/sen list from db on page load
                     .then((response) => {
-                    userObject.array = response.data;
+                    userObject.array = response.data; // assign response to controller 
                 });
             }
         };

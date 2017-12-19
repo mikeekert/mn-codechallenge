@@ -18,34 +18,44 @@ body {
   display: block;
   margin-bottom: 15px;
 }
+/* line 16, ../sass/_contact.scss */
+.initial label {
+  cursor: pointer;
+}
+/* line 19, ../sass/_contact.scss */
+.initial .btn-secondary:not([disabled]):not(.disabled).active,
+.initial .btn-secondary:not([disabled]):not(.disabled):active,
+.initial .show > .btn-secondary.dropdown-toggle {
+  background-color: #515151;
+}
 
-/* line 18, ../sass/_contact.scss */
+/* line 26, ../sass/_contact.scss */
 .contactinfo {
   margin: 15px 0;
 }
-/* line 20, ../sass/_contact.scss */
+/* line 28, ../sass/_contact.scss */
 .contactinfo input,
 .contactinfo textarea {
   margin: 5px 0;
   display: block;
 }
-/* line 25, ../sass/_contact.scss */
+/* line 33, ../sass/_contact.scss */
 .contactinfo input[type="checkbox"] {
   display: inline;
 }
-/* line 28, ../sass/_contact.scss */
+/* line 36, ../sass/_contact.scss */
 .contactinfo button {
   display: block;
 }
-/* line 31, ../sass/_contact.scss */
+/* line 39, ../sass/_contact.scss */
 .contactinfo button[disabled] {
   opacity: .5;
 }
-/* line 34, ../sass/_contact.scss */
+/* line 42, ../sass/_contact.scss */
 .contactinfo .recaptchaMsg {
   min-height: 30px;
 }
-/* line 37, ../sass/_contact.scss */
+/* line 45, ../sass/_contact.scss */
 .contactinfo #subject {
   margin-top: 25px;
 }

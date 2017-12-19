@@ -13,6 +13,14 @@ body {
         display: block;
         margin-bottom: 15px;
     }
+    label {
+        cursor: pointer;
+    }
+    .btn-secondary:not([disabled]):not(.disabled).active,
+    .btn-secondary:not([disabled]):not(.disabled):active,
+    .show>.btn-secondary.dropdown-toggle {
+        background-color: #515151;
+    }
 }
 
 .contactinfo {
