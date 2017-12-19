@@ -22,59 +22,117 @@
 
     <!-- google captcha -->
     <script src="../scripts/vendors/angular-recaptcha.min.js"></script>
+    <script src="../scripts/vendors/angular-select-state.js"></script>
 </head>
 
 
 <body ng-app="myApp">
-    <section ng-controller="ContactController as cont" ng-init="cont.service.retrieve()" class="container">
-        <div ng-hide="cont.userObject.complete">
+    <section ng-controller="ContactController as cont" ng-init="cont.service.retrieve()" class="container-fluid">
+        <div ng-hide="cont.userObject.complete" class="container">
             <form action="" class="initial" data-toggle="buttons">
                 <h4>Search By:</h4>
-                <label for="district" class="btn btn-secondary" ng-class="{active: cont.Chk == 'dist'}">
-                    <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]"> District
+                <label for="district" class="btn btn-light" ng-class="{active: cont.Chk == 'dist'}">
+                    <input type="radio" name="filter" id="district" value="dist" ng-model="cont.Chk" ng-change="cont.destination=cont.destination[0]">District
                 </label>
-                <label for="senator" class="btn btn-secondary" ng-class="{active: cont.Chk == 'sen'}">
-                    <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk" ng-change="cont.user.destination=cont.user.destination[0]"> Senator
+                <label for="senator" class="btn btn-light" ng-class="{active: cont.Chk == 'sen'}">
+                    <input type="radio" name="filter" id="senator" value="sen" ng-model="cont.Chk" ng-change="cont.destination=cont.destination[0]">Senator
                 </label>
-
-                <select name="districts" id="districtList" ng-options="i as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
-                    ng-model="cont.user.destination" ng-show="cont.Chk=='dist'">
-                    <option value="">-- choose an option --</option>
+                <select class="form-control" name="districts" id="districtList" ng-options="i as (i.districtid + ' - ' + i.first + ' ' + i.last) for i in cont.userObject.array | orderBy: 'districtid'"
+                    ng-model="cont.destination" ng-show="cont.Chk=='dist'" ng-change="cont.user={}">
+                    <option value="">-- Choose an option --</option>
                 </select>
-                <select name="districts" id="senatorList" ng-options="i as (i.last + ', ' + i.first) for i in cont.userObject.array | orderBy: 'last'"
-                    ng-model="cont.user.destination" ng-show="cont.Chk=='sen'">
-                    <option value="">-- choose an option --</option>
+                <select class="form-control" name="districts" id="senatorList" ng-options="i as (i.last + ', ' + i.first) for i in cont.userObject.array | orderBy: 'last'"
+                    ng-model="cont.destination" ng-show="cont.Chk=='sen'" ng-change="cont.user={}">
+                    <option value="">-- Choose an option --</option>
                 </select>
-
             </form>
-            <form class="contactinfo" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination" name="contact">
-                    <div class="card" style="width: 20rem;">
-                            <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1606fae7c8a%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1606fae7c8a%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.0859375%22%20y%3D%2297.35%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                            <div class="card-body">
-                              <h4 class="card-title">Senator Information</h4>
-                              <p class="card-text">Placeholder Content</p>
-                            </div>
-                          </div>
-                <input type="text" name="fname" id="fName" placeholder="first name" ng-model="cont.user.fName" required>
-                <input type="text" name="lname" id="lName" placeholder="last name" ng-model="cont.user.lName" required>
-                <input type="tel" name="phone" id="phone" placeholder="phonenumber" ng-model="cont.user.phone">
-                <input type="text" name="address" id="address" placeholder="address" ng-model="cont.user.address" required>
-                <input type="text" name="address2" id="address2" placeholder="address2" ng-model="cont.user.address2">
-                <input type="text" name="city" id="city" placeholder="city" ng-model="cont.user.city" required>
-                <input type="text" name="state" id="state" placeholder="state" ng-model="cont.user.state" required>
-                <input type="text" name="zip" id="zip" placeholder="zip" ng-model="cont.user.zip" required>
-                <input type="email" name="email" id="email" placeholder="e-mail" ng-model="cont.user.email" required>
-                <input type="text" name="subject" id="subject" placeholder="subject" ng-model="cont.user.subject" required>
-                <textarea name="comment" id="comment" cols="40" rows="5" placeholder="Comments" ng-model="cont.user.comments" required></textarea>
-                <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capcha"></div>
-                <div class="recaptchaMsg">
-                    <span> {{cont.userObject.capchaMessage}} </span>
+            <div class="row container-fluid" ng-show="cont.destination">
+                <div class="card col-md-2">
+                    <img class="card-img-top" src="http://placeholder.pics/svg/100x100/888888/MyLabel"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Senator Information</h4>
+                        <p class="card-text">Placeholder Content</p>
+                    </div>
                 </div>
-                <button type="submit btn btn-primary btn-lg" ng-disabled="contact.$pending">Submit</button>
-            </form>
+                <form class="contactinfo form-group col-md-8" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.destination" name="contact">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label" for="fName">First Name:</label>
+                            <input class="form-control" type="text" name="fname" id="fName" ng-model="cont.user.fName" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label" for="lName">Last Name:</label>
+                            <input class="form-control" type="text" name="lname" id="lName" ng-model="cont.user.lName" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label" for="phone">Telephone:</label>
+                            <input class="form-control" type="tel" name="phone" id="phone" ng-model="cont.user.phone">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label" for="address">Address:</label>
+                            <input class="form-control" type="text" name="address" id="address" ng-model="cont.user.address" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="col-form-label" for="address2">Address 2:</label>
+                                <input class="form-control" type="text" name="address2" id="address2" ng-model="cont.user.address2">
+                            </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label" for="city">City:</label>
+                            <input class="form-control" type="text" name="city" id="city" ng-model="cont.user.city" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-form-label" for="state">State:</label>
+                            <select-state type="text" name="state" id="state" ng-model="cont.user.state" require></select-state>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="col-form-label" for="zip">Zip:</label>
+                            <input class="form-control" type="text" name="zip" id="zip" ng-model="cont.user.zip" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label" for="email">E-mail:</label>
+                            <input class="form-control" type="email" name="email" id="email" ng-model="cont.user.email" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-form-label" for="subject">Subject:</label>
+                            <input class="form-control" type="text" name="subject" id="subject" ng-model="cont.user.subject" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-form-label" for="comment">Comments:</label>
+                            <textarea class="form-control" name="comment" id="comment" cols="40" rows="5" ng-model="cont.user.comments" required></textarea>
+                        </div>
+                    </div>
+
+                    <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capcha"></div>
+                    <div class="recaptchaMsg">
+                        <span> {{cont.userObject.capchaMessage}} </span>
+                    </div>
+
+                    <div class="row">
+                            <div class="form-group col-md-6">
+                                    <button class="btn btn-primary btn-lg" type="submit btn btn-primary btn-lg" ng-disabled="contact.$pending">Submit</button>
+
+                            </div>
+                        </div>
+                </form>
+
+            </div>
         </div>
         <div ng-show="cont.userObject.complete">
-            <h3>Thank You for Your Submission!</h3>
+            <h3 class="alert alert-success" role="alert">Thank You for Your Submission!</h3>
         </div>
     </section>
 

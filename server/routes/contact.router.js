@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
 
     // checking capcha being empty
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-        return res.json({"responseDesc": "Please select captcha"});
+        return res.json({"responseCode": 1, "responseDesc": "Please select captcha"});
     }
 
     // build API call variable to verify capcha token

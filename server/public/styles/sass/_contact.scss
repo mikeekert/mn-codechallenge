@@ -2,9 +2,14 @@ body {
     background-color: white;
     padding: 25px;
 }
+.container {
+    background-color: #f3f3f3;
+    max-width: 1140px;
+    border: 1px solid grey;
+}
 
 .initial {
-    margin: 15px 0;
+    margin: 0 0 50px 0;
     input {
         display: inline;
         margin: 15px 0;
@@ -16,18 +21,28 @@ body {
     label {
         cursor: pointer;
     }
-    .btn-secondary:not([disabled]):not(.disabled).active,
-    .btn-secondary:not([disabled]):not(.disabled):active,
-    .show>.btn-secondary.dropdown-toggle {
-        background-color: #515151;
+    .btn-light:not([disabled]):not(.disabled).active,
+    .btn-light:not([disabled]):not(.disabled):active,
+    .show>.btn-light.dropdown-toggle {
+        background-color: #990033;
+        color: #fff;
     }
+    .btn-light {
+        border-color: #8b8b8b;
+    }
+
+    select {
+        width: 200px;
+    }
+}
+.card {
+    padding: 0;
 }
 
 .contactinfo {
-    margin: 15px 0;
+    flex:1;
     input,
     textarea {
-        margin: 5px 0;
         display: block;
     }
     input[type="checkbox"] {
@@ -42,7 +57,5 @@ body {
     .recaptchaMsg {
         min-height: 30px;
     }
-    #subject {
-        margin-top: 25px;
-    }
+
 }

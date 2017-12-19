@@ -7,14 +7,21 @@ myApp
                 user['g-recaptcha-response'] = vcRecaptchaService.getResponse(); // add captcha server token to payload
                 $http.post('/contact/', user) // post for mdata, along with captcha token, to server API for server-side verify
                     .then((response) => {
-                    userObject.capchaMessage = response.data.responseDesc; // return captcha json message to DOM
+                        
+                    // return captcha json message to DOM
+                    userObject.capchaMessage = response.data.responseDesc;
+
+                    if (response.data.responseCode == 1) { // halt on error code
+                        return;
+                    }
                     userObject.complete = true; // display success section of index page
+                    userObject.user = '';
                 });
             },
             retrieve: () => {
                 $http.get('/contact') // get district/sen list from db on page load
                     .then((response) => {
-                    userObject.array = response.data; // assign response to controller 
+                    userObject.array = response.data; // assign response to controller
                 });
             }
         };
