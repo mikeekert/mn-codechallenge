@@ -9,6 +9,8 @@
     <!-- styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/stylesheets/ngToast.min.css">
+    <link rel="stylesheet" href="../styles/stylesheets/ngToast-animations.min.css">
     <link href="../styles/stylesheets/base.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/stylesheets/screen.css">
 
@@ -23,6 +25,8 @@
     <!-- google captcha -->
     <script src="../scripts/vendors/angular-recaptcha.min.js"></script>
     <script src="../scripts/vendors/angular-select-state.js"></script>
+    <script src="../scripts/vendors/ngToast.js"></script>
+    <script src="../scripts/vendors/angular-sanitize.js"></script>
 </head>
 
 
@@ -48,59 +52,60 @@
             </form>
             <div class="row container-fluid" ng-show="cont.user.destination">
                 <div class="card col-md-2">
-                    <img class="card-img-top" src="https://placeholder.pics/svg/100x100/888888/MyLabel"
-                        alt="Card image cap">
+                    <img class="card-img-top" src="https://placeholder.pics/svg/100x100/888888/MyLabel" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">Senator Information</h4>
                         <p class="card-text">Placeholder Content</p>
                     </div>
                 </div>
-                <form class="contactinfo form-group col-md-8" ng-submit="cont.service.formsend(cont.user)" ng-show="cont.user.destination" name="contact">
+                <form class="contactinfo form-group col-md-8" ng-submit="cont.submit(cont.user)" ng-show="cont.user.destination" name="contact"
+                    ng-model="cont.userform" autocomplete="on">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="fName">First Name:</label>
-                            <input class="form-control" type="text" name="fname" id="fName" ng-model="cont.user.src.fName" ng-required="true">
+                            <input class="form-control" type="text" name="name" id="fName" ng-model="cont.user.src.fName" ng-required="true" autocomplete="name">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="lName">Last Name:</label>
-                            <input class="form-control" type="text" name="lname" id="lName" ng-model="cont.user.src.lName" ng-required="true">
+                            <input class="form-control" type="text" name="name" id="lName" ng-model="cont.user.src.lName" ng-required="true" autocomplete="family-name">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="phone">Telephone:</label>
-                            <input class="form-control" type="tel" name="phone" id="phone" ng-model="cont.user.src.phone">
+                            <input class="form-control" type="tel" name="phone" id="phone" ng-model="cont.user.src.phone" autocomplete="tel">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="address">Address:</label>
-                            <input class="form-control" type="text" name="address" id="address" ng-model="cont.user.src.address" ng-required="true">
+                            <input class="form-control" type="text" name="address" id="address" ng-model="cont.user.src.address" ng-required="true" autocomplete="address-line1">
                         </div>
                         <div class="form-group col-md-6">
-                                <label class="col-form-label" for="address2">Address 2:</label>
-                                <input class="form-control" type="text" name="address2" id="address2" ng-model="cont.user.src.address2">
-                            </div>
+                            <label class="col-form-label" for="address2">Address 2:</label>
+                            <input class="form-control" type="text" name="address2" id="address2" ng-model="cont.user.src.address2" autocomplete="address-line2">
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="city">City:</label>
-                            <input class="form-control" type="text" name="city" id="city" ng-model="cont.user.src.city" ng-required="true">
+                            <input class="form-control" type="text" name="city" id="city" ng-model="cont.user.src.city" ng-required="true" autocomplete="address-level2">
                         </div>
                         <div class="form-group col-md-4">
                             <label class="col-form-label" for="state">State:</label>
-                            <select-state type="text" name="state" id="state" ng-model="cont.user.src.state" require></select-state>
+                            <select-state type="text" name="state" id="state"></select-state>
                         </div>
                         <div class="form-group col-md-2">
                             <label class="col-form-label" for="zip">Zip:</label>
-                            <input class="form-control" type="text" name="zip" id="zip" ng-model="cont.user.src.zip" ng-required="true" ng-maxlength="5">
+                            <input class="form-control" type="text" name="zip" id="zip" ng-model="cont.user.src.zip" ng-required="true" maxlength="5"
+                                autocomplete="postal-code">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="email">E-mail:</label>
-                            <input class="form-control" type="email" name="email" id="email" ng-model="cont.user.src.email" ng-required="true">
+                            <input class="form-control" type="email" name="email" id="email" ng-model="cont.user.src.email" ng-required="true" autocomplete="email">
                         </div>
                     </div>
                     <div class="row">
@@ -122,18 +127,16 @@
                     </div>
 
                     <div class="row">
-                            <div class="form-group col-md-6">
-                                    <button class="btn btn-primary btn-lg" type="submit btn btn-primary btn-lg" ng-disabled="!cont.userObject.btn">Submit</button>
-
-                            </div>
+                        <div class="form-group col-md-6">
+                            <button class="btn btn-primary btn-lg" type="submit btn btn-primary btn-lg" ng-disabled="!cont.userObject.btn">Submit</button>
                         </div>
+                    </div>
                 </form>
 
             </div>
         </div>
-        <div ng-show="cont.userObject.complete">
-            <h3 class="alert alert-success" role="alert">Thank You for Your Submission!</h3>
-        </div>
+        <toast>
+        </toast>
     </section>
 
 </body>

@@ -46,7 +46,6 @@ router.post('/', (req, res) => {
         // send nodemailer obj
         transporter.sendMail(mailOptions, (err, info) => {
             if (err) {
-                console.log('mail error: ',err);
                 res.sendStatus(500);
             } else {
                 res.sendStatus(200);
@@ -72,10 +71,9 @@ router.post('/', (req, res) => {
                 dest.district,
                 user.phone
             ];
-            client.query(query, target, (queryErr, resultObj) => {
+            client.query(query, target, (queryErr, resultObj) => { // DB insert block
                 done();
                 if (queryErr) {
-                    console.log('sql error: ', queryErr);
                     res.sendStatus(500);
                 } else {
                     res.send(resultObj.rows);
@@ -87,7 +85,7 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     pool
-        .connect(function (err, client, done) {
+        .connect(function (err, client, done) { // get all db items
             const query = 'SELECT * FROM districts INNER JOIN senators on districts.id=senators.district OR' +
                     'DER BY districts.districtid';
             client.query(query, (queryErr, resultObj) => {

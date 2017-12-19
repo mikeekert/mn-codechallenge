@@ -1,16 +1,23 @@
 myApp
-    .controller('ContactController', function (ContactService, vcRecaptchaService) {
-        var vm = this;
+    .controller('ContactController', function (ContactService, vcRecaptchaService, ngToast, $scope) {
+        const vm = this;
         vm.service = ContactService; // bind controller/service
+
         vm.userObject = ContactService.userObject; // bind controller/service properties
-        vm.userObject.complete=false; // variable controlling form on load
-        vm.userObject.btn=true; // submit btn enabled on load
         vm.user = ContactService.userObject.user;
 
-        vm.isActive = () => {
-            $scope.activeButton = () => {
-              $scope.isActive = !$scope.isActive;
-            };
+        vm.userform = ContactService.userObject.userform;
+
+        vm.userObject.complete = false; // variable controlling form on load
+        vm.userObject.btn = true; // submit btn enabled on load
+
+        vm.submit = (target) => {
+            vm
+                .service
+                .formsend(target);
+
+            vm.user = {}; // clear form
+            vm.Chk = {};
         };
 
         vm.district = () => {

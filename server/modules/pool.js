@@ -2,8 +2,8 @@ var pg = require('pg');
 var url = require('url');
 
 if (process.env.DATABASE_URL) { // checking if app is on hosted service or local
-  var params = url.parse(process.env.DATABASE_URL);
-  var auth = params
+  let params = url.parse(process.env.DATABASE_URL);
+  let auth = params
     .auth
     .split(':');
   config = {
