@@ -9,69 +9,75 @@ body {
   background-color: #f3f3f3;
   max-width: 1140px;
   border: 1px solid grey;
+  padding: 15px;
 }
 
 /* line 11, ../sass/_contact.scss */
+.container-fluid {
+  padding: 15px;
+}
+
+/* line 15, ../sass/_contact.scss */
 .initial {
   margin: 0 0 50px 0;
 }
-/* line 13, ../sass/_contact.scss */
+/* line 17, ../sass/_contact.scss */
 .initial input {
   display: inline;
   margin: 15px 0;
 }
-/* line 17, ../sass/_contact.scss */
+/* line 21, ../sass/_contact.scss */
 .initial select {
   display: block;
   margin-bottom: 15px;
 }
-/* line 21, ../sass/_contact.scss */
+/* line 25, ../sass/_contact.scss */
 .initial label {
   cursor: pointer;
 }
-/* line 24, ../sass/_contact.scss */
+/* line 28, ../sass/_contact.scss */
 .initial .btn-light:not([disabled]):not(.disabled).active,
 .initial .btn-light:not([disabled]):not(.disabled):active,
 .initial .show > .btn-light.dropdown-toggle {
   background-color: #990033;
   color: #fff;
 }
-/* line 30, ../sass/_contact.scss */
+/* line 34, ../sass/_contact.scss */
 .initial .btn-light {
   border-color: #8b8b8b;
 }
-/* line 34, ../sass/_contact.scss */
+/* line 38, ../sass/_contact.scss */
 .initial select {
   width: 200px;
 }
 
-/* line 38, ../sass/_contact.scss */
+/* line 42, ../sass/_contact.scss */
 .card {
   padding: 0;
 }
 
-/* line 42, ../sass/_contact.scss */
+/* line 46, ../sass/_contact.scss */
 .contactinfo {
   flex: 1;
 }
-/* line 44, ../sass/_contact.scss */
+/* line 48, ../sass/_contact.scss */
 .contactinfo input,
 .contactinfo textarea {
   display: block;
 }
-/* line 48, ../sass/_contact.scss */
+/* line 52, ../sass/_contact.scss */
 .contactinfo input[type="checkbox"] {
   display: inline;
 }
-/* line 51, ../sass/_contact.scss */
+/* line 55, ../sass/_contact.scss */
 .contactinfo button {
   display: block;
 }
-/* line 54, ../sass/_contact.scss */
+/* line 58, ../sass/_contact.scss */
 .contactinfo button[disabled] {
   opacity: .5;
 }
-/* line 57, ../sass/_contact.scss */
+/* line 61, ../sass/_contact.scss */
 .contactinfo .recaptchaMsg {
   min-height: 30px;
 }
