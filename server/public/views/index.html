@@ -32,6 +32,7 @@
 
 <body ng-app="myApp">
     <section ng-controller="ContactController as cont" ng-init="cont.service.retrieve()" class="container-fluid">
+        <h1 class="text-center">Contact</h1>
         <div ng-hide="cont.userObject.complete" class="container">
             <form action="" class="initial" data-toggle="buttons">
                 <h4>Search By:</h4>
@@ -51,11 +52,12 @@
                 </select>
             </form>
             <div class="row container-fluid" ng-show="cont.user.destination">
-                <div class="card col-md-2">
+                <div class="card col-md-4">
                     <img class="card-img-top" src="https://placeholder.pics/svg/100x100/888888/MyLabel" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">Senator Information</h4>
-                        <p class="card-text">Placeholder Content</p>
+                        <h4 class="card-title">Senator Information:</h4>
+                        <h5> {{ cont.user.destination.first }}  {{ cont.user.destination.last }} ({{ cont.user.destination.party }}) </h5>
+                        <p class="card-text">Phone: {{cont.user.destination.phone}}</p>
                     </div>
                 </div>
                 <form class="contactinfo form-group col-md-8" ng-submit="cont.submit(cont.user)" ng-show="cont.user.destination" name="contact"
@@ -120,25 +122,20 @@
                             <textarea class="form-control" name="comment" id="comment" cols="40" rows="5" ng-model="cont.user.src.comments" ng-required="true"></textarea>
                         </div>
                     </div>
-
                     <div vc-recaptcha key="'6LdiOT0UAAAAANnlDcw1FHDif7NHn8x4gNSuWysd'" ng-model="cont.userObject.capcha"></div>
                     <div class="recaptchaMsg">
                         <span> {{cont.userObject.capchaMessage}} </span>
                     </div>
-
                     <div class="row">
                         <div class="form-group col-md-6">
                             <button class="btn btn-primary btn-lg" type="submit btn btn-primary btn-lg" ng-disabled="!cont.userObject.btn">Submit</button>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
         <toast>
         </toast>
     </section>
-
 </body>
-
 </html>

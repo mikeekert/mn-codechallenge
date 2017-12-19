@@ -11,18 +11,18 @@ myApp
                     // return captcha json message to DOM
                     userObject.capchaMessage = response.data.responseDesc;
 
-                    // if (response.data.responseCode == 1) { // halt on error code
-                    //     userObject.btn = true;
-                    //     return;
-                    // }
+                    if (response.data.responseCode == 1) { // halt on error code
+                        userObject.btn = true;
+                        return;
+                    }
                     ngToast.create({className: 'success', content: 'Message Sent', horizontalPosition: 'center', verticalPosition: 'top'});
-
                 });
             },
             retrieve: () => {
                 $http.get('/contact') // get district/sen list from db on page load
                     .then((response) => {
-                    userObject.array = response.data; // assign response to controller
+                    userObject.array = response.data; // assign response to module
+                    console.log(userObject.array);
                 });
             }
         };
