@@ -1,5 +1,5 @@
-var pg = require('pg');
-var url = require('url');
+const pg = require('pg');
+const url = require('url');
 
 if (process.env.DATABASE_URL) { // checking if app is on hosted service or local
   let params = url.parse(process.env.DATABASE_URL);
