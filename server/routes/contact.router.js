@@ -45,6 +45,7 @@ router.post('/', (req, res) => {
         // send nodemailer obj
         transporter.sendMail(mailOptions, (err, info) => {
             if (err) {
+                console.log('mail error: ',err);
                 res.sendStatus(500);
             } else {
                 res.sendStatus(200);
@@ -73,6 +74,7 @@ router.post('/', (req, res) => {
             client.query(query, target, (queryErr, resultObj) => {
                 done();
                 if (queryErr) {
+                    console.log('sql error: ', queryErr);
                     res.sendStatus(500);
                 } else {
                     res.send(resultObj.rows);
